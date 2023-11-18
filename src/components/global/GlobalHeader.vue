@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router';
+import AppLink from "@/components/app/AppLink.vue";
 </script>
 
 <template>
   <nav>
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/about">About</RouterLink>
+    <AppLink to="/">Home</AppLink>
+    <AppLink to="/about">About</AppLink>
   </nav>
 </template>
