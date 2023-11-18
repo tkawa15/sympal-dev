@@ -6,7 +6,11 @@ module.exports = {
   ],
   darkMode: 'media',
   theme: {
-    extend: {},
+    colors: {
+      'black': '#333333',
+      'white': '#FFFFFF',
+      'red': '#E60033',
+    },
   },
   variants: {
     extend: {},

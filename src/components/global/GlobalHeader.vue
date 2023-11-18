@@ -3,7 +3,7 @@ import AppLink from "@/components/app/AppLink.vue";
 </script>
 
 <template>
-  <nav>
+  <nav class="bg-red text-white">
     <AppLink to="/">Home</AppLink>
     <AppLink to="/about">About</AppLink>
   </nav>
