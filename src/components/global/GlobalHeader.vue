@@ -1,26 +1,36 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import AppLink from "@/components/app/AppLink.vue";
+
+const isTransforming = ref<boolean>(false);
 
 onMounted(() => {
   const header = document.querySelector("#header") as HTMLElement;
-  if (!header) return; 
+  const menuToggleButton = document.querySelector("#menu-toggle-button") as HTMLElement;
+  if (!header || !menuToggleButton) return; 
   const headerInitialWidth = header.clientWidth;
   const headerInitialHeight = header.clientHeight;
+
   window.addEventListener("scroll", () => {
     const scrollY = window.scrollY;
     if (scrollY <= 0) {
       header.style.left = "0px";
       header.style.borderRadius = "0px";
     } else if (scrollY < headerInitialHeight) {
+      isTransforming.value = true;
+      menuToggleButton.style.display = "none";
       header.style.display = "flex";
       header.style.borderTopLeftRadius = "40px";
       header.style.borderBottomLeftRadius = "40px";
       const headerLeft = (headerInitialWidth - 72) / headerInitialHeight * scrollY;
       header.style.left = `${headerLeft}px`;
     } else {
-      header.style.display = "none";
-      header.style.left = `${headerInitialWidth}px`;
+      if (isTransforming.value) {
+        isTransforming.value = false;
+        menuToggleButton.style.display = "flex";
+        header.style.display = "none";
+        header.style.left = `${headerInitialWidth}px`;
+      }
     }
     console.log(headerInitialHeight);
   }, { passive: true })
@@ -30,7 +40,7 @@ onMounted(() => {
 <template>
   <div>
     <nav id="header" class="header">
-      <div class="shrink-0">
+      <div class="shrink-0 mr-5">
         <AppLink to="/">
           <img src="@/assets/images/sympal_rogotype_RGB.png" class="w-40 h-12" />
         </AppLink>
@@ -43,9 +53,10 @@ onMounted(() => {
       </div>
     </nav>
 
-    <div class="toggle-button">
+    <div id="menu-toggle-button" class="menu-toggle-button">
       <img src="@/assets/images/sympal_symbol_RGB.png" class="h-12" />
     </div>
+    <MenuOpenIcon />
   </div>
 </template>
 
@@ -56,8 +67,8 @@ onMounted(() => {
   @apply bg-white text-red shadow-md;
 }
 
-.toggle-button {
-  @apply hidden md:flex md:items-center;
+.menu-toggle-button {
+  @apply hidden items-center;
   @apply absolute right-0 h-20 pl-5 pr-2.5;
   @apply rounded-l-full;
   @apply bg-white text-red shadow-md;
