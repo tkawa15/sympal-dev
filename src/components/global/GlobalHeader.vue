@@ -1,27 +1,65 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import AppLink from "@/components/app/AppLink.vue";
+
+onMounted(() => {
+  const header = document.querySelector("#header") as HTMLElement;
+  if (!header) return; 
+  const headerInitialWidth = header.clientWidth;
+  const headerInitialHeight = header.clientHeight;
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    if (scrollY <= 0) {
+      header.style.left = "0px";
+      header.style.borderRadius = "0px";
+    } else if (scrollY < headerInitialHeight) {
+      header.style.display = "flex";
+      header.style.borderTopLeftRadius = "40px";
+      header.style.borderBottomLeftRadius = "40px";
+      const headerLeft = (headerInitialWidth - 72) / headerInitialHeight * scrollY;
+      header.style.left = `${headerLeft}px`;
+    } else {
+      header.style.display = "none";
+      header.style.left = `${headerInitialWidth}px`;
+    }
+    console.log(headerInitialHeight);
+  }, { passive: true })
+})
 </script>
 
 <template>
-  <nav class="wrapper shadow-none">
-    <div>
-      <AppLink to="/">
-        <img src="@/assets/images/sympal_rogotype_RGB.png" class="h-12" />
-      </AppLink>
+  <div>
+    <nav id="header" class="header">
+      <div class="shrink-0">
+        <AppLink to="/">
+          <img src="@/assets/images/sympal_rogotype_RGB.png" class="w-40 h-12" />
+        </AppLink>
+      </div>
+      <div class="flex gap-x-5">
+        <AppLink to="/about">About</AppLink>
+        <AppLink to="/service">Service</AppLink>
+        <AppLink to="/news">News</AppLink>
+        <AppLink to="https://sympal.co.jp/contact/">Contact</AppLink>
+      </div>
+    </nav>
+
+    <div class="toggle-button">
+      <img src="@/assets/images/sympal_symbol_RGB.png" class="h-12" />
     </div>
-    <div class="flex gap-x-5">
-      <AppLink to="/about">About</AppLink>
-      <AppLink to="/service">Service</AppLink>
-      <AppLink to="/news">News</AppLink>
-      <AppLink to="https://sympal.co.jp/contact/">Contact</AppLink>
-    </div>
-  </nav>
+  </div>
 </template>
 
 <style scoped>
-.wrapper {
-  @apply h-full px-5;
-  @apply flex justify-between items-center;
+.header {
+  @apply absolute inset-x-0 h-full pl-4 pr-5;
+  @apply hidden md:flex justify-between items-center;
+  @apply bg-white text-red shadow-md;
+}
+
+.toggle-button {
+  @apply hidden md:flex md:items-center;
+  @apply absolute right-0 h-20 pl-5 pr-2.5;
+  @apply rounded-l-full;
   @apply bg-white text-red shadow-md;
 }
 </style>
