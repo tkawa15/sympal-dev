@@ -5,11 +5,11 @@ import GlobalFooter from '@/components/global/GlobalFooter.vue';
 </script>
 
 <template>
-  <div>
-    <header>
+  <div class="flex flex-col min-h-screen">
+    <header class="fixed w-full h-20">
       <GlobalHeader />
     </header>
-    <main>
+    <main class="pt-20 grow">
       <RouterView />
     </main>
     <footer>
