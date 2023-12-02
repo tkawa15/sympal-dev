@@ -1,21 +1,67 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { throttle } from 'lodash-es';
+import { once, throttle } from 'lodash-es';
+import isMobile from 'ismobilejs';
 import AppLink from "@/components/app/AppLink.vue";
 
 const isTransforming = ref<boolean>(false);
+const isPhone = ref<boolean>(false);
+
+const menus = [
+  {
+    text: 'About',
+    to: '/about',
+  },
+  {
+    text: 'Service',
+    to: '/service',
+  },
+  {
+    text: 'News',
+    to: '/news',
+  },
+  {
+    text: 'Contact',
+    to: 'https://sympal.co.jp/contact/',
+  },
+];
+
+const toggleSideMenu = () => {
+  const menuToggleButton = document.querySelector("#menu-toggle-button") as HTMLElement;
+  const sideMenu = document.querySelector("#side-menu") as HTMLElement;
+  if (!menuToggleButton || !sideMenu) return; 
+  menuToggleButton.classList.toggle('open');
+  sideMenu.classList.toggle('open');
+};
 
 onMounted(() => {
+  isPhone.value = isMobile(window.navigator).phone;
   const header = document.querySelector("#header") as HTMLElement;
   const menuToggleButton = document.querySelector("#menu-toggle-button") as HTMLElement;
+
+  const showMenuToggleButton = once(() => {
+    menuToggleButton.style.display = "flex";
+    header.style.display = "none";
+    menuToggleButton.classList.add("display");
+  });
+
+  if (isPhone.value) {
+    showMenuToggleButton();
+    return;
+  }
+
   if (!header || !menuToggleButton) return;
   const windowHeight = window.innerHeight;
   const headerInitialWidth = header.clientWidth;
   const headerInitialHeight = header.clientHeight;
   const menuToggleButtonWidth = 72;
 
-  window.addEventListener("scroll", throttle(() => {
+  const transformHeader = () => {
     const scrollY = window.scrollY;
+    if (scrollY >= windowHeight) {
+      showMenuToggleButton();
+    }
+    
     if (scrollY <= headerInitialHeight) {
       if (isTransforming.value) {
         isTransforming.value = false;
@@ -37,33 +83,47 @@ onMounted(() => {
         isTransforming.value = false;
         menuToggleButton.style.display = "flex";
         header.style.display = "none";
-        header.style.left = `${headerInitialWidth}px`;
       }
     }
-  }, 10))
-})
+  };
+  window.addEventListener("scroll", throttle(transformHeader, 10));
+});
 </script>
 
 <template>
   <div>
-    <nav id="header" class="header">
+    <!-- ヘッダー -->
+    <nav v-if="!isPhone" id="header" class="header">
       <div class="shrink-0 mr-5">
-        <AppLink to="/">
-          <img src="@/assets/images/sympal_rogotype_RGB.png" class="w-40 h-12" />
+        <AppLink to="/" color="transparent">
+          <img src="@/assets/images/sympal-full-red.png" class="w-40 h-12" />
         </AppLink>
       </div>
       <div class="flex gap-x-5">
-        <AppLink to="/about">About</AppLink>
-        <AppLink to="/service">Service</AppLink>
-        <AppLink to="/news">News</AppLink>
-        <AppLink to="https://sympal.co.jp/contact/">Contact</AppLink>
+        <template v-for="(menu, index) in menus" :key="`header-menu-${index}`">
+          <AppLink :to="menu.to">{{ menu.text }}</AppLink>
+        </template>
       </div>
     </nav>
 
-    <div id="menu-toggle-button" class="menu-toggle-button">
-      <img src="@/assets/images/sympal_symbol_RGB.png" class="h-12" />
+    <!-- メニュー開閉ボタン -->
+    <div id="menu-toggle-button" class="menu-toggle-button" :onClick="toggleSideMenu">
+      <img src="@/assets/images/sympal-logo-white.png" class="w-12" />
+      <img src="@/assets/icons/menu-open.svg" class="absolute right-[23px] w-5" />
     </div>
-    <MenuOpenIcon />
+
+    <!-- サイドメニュー -->
+    <nav id="side-menu" class="side-menu">
+      <div class="bg-wrapper hodden inset-0 bg-black opacity-0 -z-10" :onClick="toggleSideMenu"></div>
+      <div>
+        <AppLink to="/" color="transparent">
+          <img src="@/assets/images/sympal-text-white.png" class="h-12" />
+        </AppLink>
+      </div>
+      <template v-for="(menu, index) in menus" :key="`header-menu-${index}`">
+        <AppLink :to="menu.to" color="white">{{ menu.text }}</AppLink>
+      </template>
+    </nav>
   </div>
 </template>
 
@@ -71,13 +131,37 @@ onMounted(() => {
 .header {
   @apply absolute inset-x-0 h-full pl-4 pr-5;
   @apply hidden md:flex justify-between items-center;
-  @apply bg-white text-red shadow-md;
+  @apply bg-white shadow-md;
 }
 
 .menu-toggle-button {
   @apply hidden items-center;
   @apply absolute right-0 h-20 pl-5 pr-2.5;
   @apply rounded-l-full;
-  @apply bg-white text-red shadow-md;
+  @apply bg-red opacity-0 shadow-md;
+  @apply hover:cursor-pointer;
+  @apply transition-all;
+}
+.menu-toggle-button.display {
+  @apply opacity-100;
+}
+.menu-toggle-button.open {
+  @apply right-60;
+}
+.menu-toggle-button.open > * {
+  @apply -scale-x-100;
+}
+
+.side-menu {
+  @apply absolute -right-60 w-60 h-screen p-5;
+  @apply bg-red;
+  @apply flex flex-col gap-y-5 shadow-md;
+  @apply transition-all;
+}
+.side-menu.open {
+  @apply right-0;
+}
+.side-menu.open > .bg-wrapper {
+  @apply fixed opacity-50;
 }
 </style>

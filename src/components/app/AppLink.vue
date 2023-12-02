@@ -25,7 +25,7 @@ const isExternalLink: boolean = openNewTab && compoment === "a";
     :to="to"
     :target="isExternalLink ? '_blank' : undefined"
     :rel="isExternalLink ? 'noreferrer' : undefined"
-    class="relative hover:cursor-pointer"
+    :class="`relative text-${color} hover:cursor-pointer`"
   >
     <span class="link-text">
       <slot></slot>
