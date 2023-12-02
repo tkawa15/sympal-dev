@@ -16,7 +16,7 @@ import AppLink from "@/components/app/AppLink.vue";
         </div>
       </section>
 
-      <section class="mt-10 h-72">
+      <section class="mt-10 h-[200vh]">
         <p>「Sympal」に込めた思い</p>
         <p>共生（<span class="text-red">Sym</span>biosis）+ 仲間（<span class="text-red">pal</span>）</p>
       </section>

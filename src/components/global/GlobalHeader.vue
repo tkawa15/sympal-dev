@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import { throttle } from 'lodash-es';
 import AppLink from "@/components/app/AppLink.vue";
 
 const isTransforming = ref<boolean>(false);
@@ -7,22 +8,29 @@ const isTransforming = ref<boolean>(false);
 onMounted(() => {
   const header = document.querySelector("#header") as HTMLElement;
   const menuToggleButton = document.querySelector("#menu-toggle-button") as HTMLElement;
-  if (!header || !menuToggleButton) return; 
+  if (!header || !menuToggleButton) return;
+  const windowHeight = window.innerHeight;
   const headerInitialWidth = header.clientWidth;
   const headerInitialHeight = header.clientHeight;
+  const menuToggleButtonWidth = 72;
 
-  window.addEventListener("scroll", () => {
+  window.addEventListener("scroll", throttle(() => {
     const scrollY = window.scrollY;
-    if (scrollY <= 0) {
-      header.style.left = "0px";
-      header.style.borderRadius = "0px";
-    } else if (scrollY < headerInitialHeight) {
-      isTransforming.value = true;
-      menuToggleButton.style.display = "none";
-      header.style.display = "flex";
-      header.style.borderTopLeftRadius = "40px";
-      header.style.borderBottomLeftRadius = "40px";
-      const headerLeft = (headerInitialWidth - 72) / headerInitialHeight * scrollY;
+    if (scrollY <= headerInitialHeight) {
+      if (isTransforming.value) {
+        isTransforming.value = false;
+        header.style.left = "0px";
+        header.style.borderRadius = "0px";
+      }
+    } else if (scrollY < windowHeight) {
+      if (!isTransforming.value) {
+        isTransforming.value = true;
+        menuToggleButton.style.display = "none";
+        header.style.display = "flex";
+        header.style.borderTopLeftRadius = "40px";
+        header.style.borderBottomLeftRadius = "40px";
+      }
+      const headerLeft = (headerInitialWidth - menuToggleButtonWidth) / (windowHeight - headerInitialHeight) * (scrollY - headerInitialHeight);
       header.style.left = `${headerLeft}px`;
     } else {
       if (isTransforming.value) {
@@ -32,8 +40,7 @@ onMounted(() => {
         header.style.left = `${headerInitialWidth}px`;
       }
     }
-    console.log(headerInitialHeight);
-  }, { passive: true })
+  }, 10))
 })
 </script>
 
