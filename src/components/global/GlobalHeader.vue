@@ -27,9 +27,11 @@ const menus = [
 ];
 
 const toggleSideMenu = () => {
-  const menuToggleButton = document.querySelector("#menu-toggle-button") as HTMLElement;
-  const sideMenu = document.querySelector("#side-menu") as HTMLElement;
-  if (!menuToggleButton || !sideMenu) return; 
+  const body = document.querySelector("body");
+  const menuToggleButton = document.querySelector("#menu-toggle-button");
+  const sideMenu = document.querySelector("#side-menu");
+  if (!body || !menuToggleButton || !sideMenu) return;
+  body.classList.toggle("no-scroll");
   menuToggleButton.classList.toggle('open');
   sideMenu.classList.toggle('open');
 };

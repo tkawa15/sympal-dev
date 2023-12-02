@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body.no-scroll {
+  @apply h-full overflow-hidden;
+}
+
 .container {
   @apply max-w-5xl mx-auto px-4;
 }

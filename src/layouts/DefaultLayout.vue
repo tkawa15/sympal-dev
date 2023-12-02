@@ -6,7 +6,7 @@ import GlobalFooter from '@/components/global/GlobalFooter.vue';
 
 <template>
   <div class="flex flex-col min-h-screen">
-    <header class="fixed w-full h-20">
+    <header class="fixed w-full h-20 z-50">
       <GlobalHeader />
     </header>
     <main class="pt-20 grow">
