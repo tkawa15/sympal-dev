@@ -1,22 +1,11 @@
 <script setup lang="ts">
-import AppLink from "@/components/app/AppLink.vue";
+import HomeFirstView from "@/components/HomeFirstView.vue";
 </script>
 
 <template>
   <div>
     <!-- トップ画像 -->
-    <section class="first-view">
-      <div class="section-wrapper">
-        <!-- <img src="@/assets/images/top-dummy1.jpg" class="top-image" /> -->
-        <div class="-mt-20 flex justify-end">
-          ファーストビュー
-          <div class="p-10 bg-red text-white rounded-lg">
-            <p class="text-4xl">ペットの寿命を10年延ばします</p>
-            <AppLink to="/about" color="white">わたしたちの Mission →</AppLink>
-          </div>
-        </div>
-      </div>
-    </section>
+    <HomeFirstView />
 
     <!-- ファーストビュー以外の枠 -->
     <div class="sticky top-0 -left-10 w-screen h-20 border-red border-[40px] rounded-[80px] border-b-0 rounded-b-none z-40">
@@ -32,22 +21,10 @@ import AppLink from "@/components/app/AppLink.vue";
       <div class="sticky top-20 text-white text-4xl font-bold flex">
         <h2 class="p-5 pr-10 bg-red rounded-r-full">わたしたちの信念</h2>
       </div>
-      <div class="section-wrapper py-10">
+      <div class="section-wrapper py-20">
         <p>「Sympal」に込めた思い</p>
         <p>共生（<span class="text-red">Sym</span>biosis）+ 仲間（<span class="text-red">pal</span>）</p>
       </div>
     </section>
   </div>
 </template>
-
-<style scoped>
-.first-view {
-  @apply bg-green;
-  height: calc(100vh - 80px);
-}
-
-.top-image {
-  width: 800px; height: 400px;
-  @apply object-cover rounded-lg;
-}
-</style>
