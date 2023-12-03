@@ -12,7 +12,7 @@ import GlobalFooter from '@/components/global/GlobalFooter.vue';
     <main class="pt-20 grow">
       <RouterView />
     </main>
-    <footer>
+    <footer class="">
       <GlobalFooter />
     </footer>
   </div>

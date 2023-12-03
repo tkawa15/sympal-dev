@@ -10,6 +10,7 @@ module.exports = {
       'black': '#333333',
       'white': '#FFFFFF',
       'red': '#E60033',
+      'green': '#eeffee',
     },
   },
   variants: {

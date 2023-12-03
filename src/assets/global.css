@@ -6,8 +6,8 @@ body.no-scroll {
   @apply h-full overflow-hidden;
 }
 
-.container {
-  @apply max-w-5xl mx-auto px-4;
+.section-wrapper {
+  @apply max-w-5xl mx-auto px-5;
 }
 
 section {
