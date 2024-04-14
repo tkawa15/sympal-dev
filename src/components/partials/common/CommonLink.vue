@@ -11,7 +11,7 @@ type Props = {
 const { to, color, tag, openNewTab } = withDefaults(defineProps<Props>(), {
   tag: '',
   color: 'red',
-  openNewTab: false
+  openNewTab: false,
 });
 
 const compoment: 'a' | typeof RouterLink = tag || to.startsWith('http') ? 'a' : RouterLink;

@@ -6,20 +6,20 @@ import imgSympalFullWhite from '@/assets/images/sympal-full-white.png';
 const HEADER_MENUS = [
   {
     text: 'About',
-    to: '/about'
+    to: '/about',
   },
   {
     text: 'Service',
-    to: '/service'
+    to: '/service',
   },
   {
     text: 'News',
-    to: '/news'
+    to: '/news',
   },
   {
     text: 'Contact',
-    to: 'https://sympal.co.jp/contact/'
-  }
+    to: 'https://sympal.co.jp/contact/',
+  },
 ];
 
 const toggleSideMenu = () => {
