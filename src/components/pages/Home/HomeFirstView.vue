@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import imgTopicIntern from '@/assets/images/topic-intern.png'
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide, Pagination } from 'vue3-carousel'
+import imgTopicIntern from '@/assets/images/topic-intern.png';
+import 'vue3-carousel/dist/carousel.css';
+import { Carousel, Slide, Pagination } from 'vue3-carousel';
 
 const TOPICS = [
   {
@@ -24,11 +24,11 @@ const TOPICS = [
     img: imgTopicIntern,
     to: 'https://sympal.co.jp/contact/'
   }
-]
+];
 </script>
 
 <template>
-  <div class="h-dvh w-full bg-top bg-cover p-0">
+  <div class="h-dvh w-full bg-top bg-cover">
     <div class="section-wrapper relative h-full">
       <!-- トップメッセージ -->
       <div class="absolute top-[40%] rounded-2xl text-white">
