@@ -9,13 +9,13 @@ type Props = {
 };
 
 const { to, color, tag, openNewTab } = withDefaults(defineProps<Props>(), {
-  tag: "",
-  color: "red",
-  openNewTab: false,
+  tag: '',
+  color: 'red',
+  openNewTab: false
 });
 
-const compoment: "a" | typeof RouterLink = tag || to.startsWith('http') ? "a" : RouterLink;
-const isExternalLink: boolean = openNewTab && compoment === "a";
+const compoment: 'a' | typeof RouterLink = tag || to.startsWith('http') ? 'a' : RouterLink;
+const isExternalLink: boolean = openNewTab && compoment === 'a';
 </script>
 
 <template>
@@ -36,10 +36,10 @@ const isExternalLink: boolean = openNewTab && compoment === "a";
 <style scoped>
 .link-text::after {
   background: v-bind(color);
-  @apply absolute left-0 bottom-0 w-full h-px;
+  @apply absolute bottom-0 left-0 h-px w-full;
   @apply content-[''];
-  @apply scale-x-0 origin-top-right;
+  @apply origin-top-right scale-x-0;
   @apply transition-transform duration-300;
-  @apply hover:scale-x-100 hover:origin-top-left;
+  @apply hover:origin-top-left hover:scale-x-100;
 }
 </style>

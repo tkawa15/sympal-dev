@@ -5,8 +5,8 @@ import GlobalFooter from '@/components/partials//global/GlobalFooter.vue';
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen">
-    <header class="fixed w-full z-50">
+  <div class="flex min-h-screen flex-col">
+    <header class="fixed z-50 w-full">
       <div class="section-wrapper py-5">
         <GlobalHeader />
       </div>

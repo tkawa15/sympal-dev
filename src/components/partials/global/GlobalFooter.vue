@@ -1,5 +1,3 @@
 <template>
-  <div class="p-10 bg-red text-white text-center">
-    &copy; Sympal Inc.
-  </div>
+  <div class="bg-red p-10 text-center text-white">&copy; Sympal Inc.</div>
 </template>

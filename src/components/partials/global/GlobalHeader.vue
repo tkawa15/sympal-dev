@@ -1,48 +1,47 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import CommonLink from "@/components/partials/common/CommonLink.vue";
-import imgSympalFullWhite from "@/assets/images/sympal-full-white.png";
+import CommonLink from '@/components/partials/common/CommonLink.vue';
+import imgSympalFullWhite from '@/assets/images/sympal-full-white.png';
 
 const HEADER_MENUS = [
   {
     text: 'About',
-    to: '/about',
+    to: '/about'
   },
   {
     text: 'Service',
-    to: '/service',
+    to: '/service'
   },
   {
     text: 'News',
-    to: '/news',
+    to: '/news'
   },
   {
     text: 'Contact',
-    to: 'https://sympal.co.jp/contact/',
-  },
+    to: 'https://sympal.co.jp/contact/'
+  }
 ];
 
 const toggleSideMenu = () => {
-  const body = document.querySelector("body");
-  const menuToggleButton = document.querySelector("#menu-toggle-button");
-  const sideMenu = document.querySelector("#side-menu");
+  const body = document.querySelector('body');
+  const menuToggleButton = document.querySelector('#menu-toggle-button');
+  const sideMenu = document.querySelector('#side-menu');
   if (!body || !menuToggleButton || !sideMenu) return;
-  body.classList.toggle("no-scroll");
+  body.classList.toggle('no-scroll');
   menuToggleButton.classList.toggle('open');
   sideMenu.classList.toggle('open');
 };
 
-onMounted(() => {
-});
+onMounted(() => {});
 </script>
 
 <template>
   <div>
     <!-- ヘッダー（PC） -->
-    <nav class="hidden rounded-[80px] md:flex justify-between items-center bg-red h-20 pl-8 pr-10">
-      <div class="shrink-0 mr-5">
+    <nav class="hidden h-20 items-center justify-between rounded-[80px] bg-red pl-8 pr-10 md:flex">
+      <div class="mr-5 shrink-0">
         <CommonLink to="/" color="transparent">
-          <img :src="imgSympalFullWhite" class="w-40 h-12" />
+          <img :src="imgSympalFullWhite" class="h-12 w-40" />
         </CommonLink>
       </div>
       <div class="flex gap-x-5">
@@ -55,7 +54,10 @@ onMounted(() => {
 
     <!-- サイドメニュー -->
     <nav id="side-menu" class="side-menu">
-      <div class="bg-wrapper hodden inset-0 bg-black opacity-0 -z-10" :onClick="toggleSideMenu"></div>
+      <div
+        class="bg-wrapper hodden inset-0 -z-10 bg-black opacity-0"
+        :onClick="toggleSideMenu"
+      ></div>
       <div>
         <CommonLink to="/" color="transparent">
           <img src="@/assets/images/sympal-text-white.png" class="h-12" />
@@ -71,12 +73,12 @@ onMounted(() => {
 <style scoped>
 .header {
   @apply absolute inset-x-0 h-full pl-4 pr-5;
-  @apply hidden md:flex justify-between items-center;
+  @apply hidden items-center justify-between md:flex;
   @apply bg-white shadow-md;
 }
 
 .side-menu {
-  @apply absolute -right-60 w-60 h-screen p-5;
+  @apply absolute -right-60 h-screen w-60 p-5;
   @apply bg-red;
   @apply flex flex-col gap-y-5 shadow-md;
   @apply transition-all;
