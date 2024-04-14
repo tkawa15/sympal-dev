@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { once, throttle } from 'lodash-es';
 import isMobile from 'ismobilejs';
-import AppLink from "@/components/app/AppLink.vue";
+import CommonLink from "@/components/partials/common/CommonLink.vue";
 
 const isTransforming = ref<boolean>(false);
 const isPhone = ref<boolean>(false);
@@ -97,13 +97,13 @@ onMounted(() => {
     <!-- ヘッダー -->
     <nav v-if="!isPhone" id="header" class="header">
       <div class="shrink-0 mr-5">
-        <AppLink to="/" color="transparent">
+        <CommonLink to="/" color="transparent">
           <img src="@/assets/images/sympal-full-red.png" class="w-40 h-12" />
-        </AppLink>
+        </CommonLink>
       </div>
       <div class="flex gap-x-5">
         <template v-for="(menu, index) in menus" :key="`header-menu-${index}`">
-          <AppLink :to="menu.to">{{ menu.text }}</AppLink>
+          <CommonLink :to="menu.to">{{ menu.text }}</CommonLink>
         </template>
       </div>
     </nav>
@@ -118,12 +118,12 @@ onMounted(() => {
     <nav id="side-menu" class="side-menu">
       <div class="bg-wrapper hodden inset-0 bg-black opacity-0 -z-10" :onClick="toggleSideMenu"></div>
       <div>
-        <AppLink to="/" color="transparent">
+        <CommonLink to="/" color="transparent">
           <img src="@/assets/images/sympal-text-white.png" class="h-12" />
-        </AppLink>
+        </CommonLink>
       </div>
       <template v-for="(menu, index) in menus" :key="`header-menu-${index}`">
-        <AppLink :to="menu.to" color="white">{{ menu.text }}</AppLink>
+        <CommonLink :to="menu.to" color="white">{{ menu.text }}</CommonLink>
       </template>
     </nav>
   </div>
