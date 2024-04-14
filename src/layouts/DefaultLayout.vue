@@ -6,10 +6,12 @@ import GlobalFooter from '@/components/partials//global/GlobalFooter.vue';
 
 <template>
   <div class="flex flex-col min-h-screen">
-    <header class="fixed w-full h-20 z-50">
-      <GlobalHeader />
+    <header class="fixed w-full z-50">
+      <div class="section-wrapper py-5">
+        <GlobalHeader />
+      </div>
     </header>
-    <main class="pt-20 grow">
+    <main class="grow">
       <RouterView />
     </main>
     <footer class="">
