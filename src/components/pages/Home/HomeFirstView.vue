@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import imgTopDummy from "@/assets/images/top-dummy1.jpg";
 import imgTopicIntern from "@/assets/images/topic-intern.png";
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
