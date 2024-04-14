@@ -7,23 +7,23 @@ const TOPICS = [
   {
     title: 'インターン募集中',
     img: imgTopicIntern,
-    to: '/about'
+    to: '/about',
   },
   {
     title: 'インターン募集中',
     img: imgTopicIntern,
-    to: '/service'
+    to: '/service',
   },
   {
     title: 'インターン募集中',
     img: imgTopicIntern,
-    to: '/news'
+    to: '/news',
   },
   {
     title: 'インターン募集中',
     img: imgTopicIntern,
-    to: 'https://sympal.co.jp/contact/'
-  }
+    to: 'https://sympal.co.jp/contact/',
+  },
 ];
 </script>
 
@@ -38,7 +38,7 @@ const TOPICS = [
         <p>Sympal株式会社は、ペットフードの開発を通じてペットの健康的な生活を実現します。</p>
       </div>
       <!-- トピックカルーセル -->
-      <div class="absolute right-0 top-[60%] w-[800px]">
+      <div class="absolute right-5 top-[60%] w-[800px]">
         <Carousel :autoplay="5000" :wrap-around="true">
           <Slide v-for="slide in TOPICS" :key="slide">
             <div class="carousel__item">
