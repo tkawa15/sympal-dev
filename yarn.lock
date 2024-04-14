@@ -3723,6 +3723,7 @@ __metadata:
     vue: "npm:^3.3.4"
     vue-router: "npm:^4.2.5"
     vue-tsc: "npm:^1.8.19"
+    vue3-carousel: "npm:^0.3.3"
   languageName: unknown
   linkType: soft
 
@@ -4082,6 +4083,15 @@ __metadata:
   bin:
     vue-tsc: bin/vue-tsc.js
   checksum: 10c0/c58ebd9d9c1b10152b94b58ade850c34de75e241491c679f136b4c5a00d87ecc38460178d6721f7a39f86b43fc8abea4c94b6f8514191447eeb2a3a4c2d036a4
+  languageName: node
+  linkType: hard
+
+"vue3-carousel@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "vue3-carousel@npm:0.3.3"
+  peerDependencies:
+    vue: ^3.2.0
+  checksum: 10c0/fdc1e5da75713d49ea47abe990a64c69a87e7a69ed219e00fa2d208de724bfc77e250ebb77731ea3f51ca073abf2f5d399d9539be4b647dc1fb395886499347e
   languageName: node
   linkType: hard
 

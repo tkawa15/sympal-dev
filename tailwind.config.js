@@ -18,6 +18,11 @@ module.exports = {
       'lg': '1024px',
       'xl': '1280px',
     },
+    extend: {
+      backgroundImage: {
+        'top': "url('./src/assets/images/top-dummy1.jpg')"
+      }
+    },
   },
   variants: {
     extend: {},
