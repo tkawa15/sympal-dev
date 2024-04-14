@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body.no-scroll {
+  @apply h-full overflow-hidden;
+}
+
+.section-wrapper {
+  @apply mx-auto max-w-7xl px-5;
+}
+
+section {
+  @apply py-20;
+}
