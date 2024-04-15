@@ -15,4 +15,5 @@ jobs:
         uses: actions/checkout@v4
       - name: 静的ビルド
         run: |
+          yarn install
           yarn deploy
