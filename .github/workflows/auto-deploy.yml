@@ -13,6 +13,7 @@ jobs:
     steps:
       - name: チェックアウト
         uses: actions/checkout@v4
+      - run: corepack enable
       - name: 静的ビルド
         run: |
           yarn install
