@@ -17,7 +17,7 @@ jobs:
         run: |
           git config --global user.email ttttt.fms5@gmail.com
           git config --global user.name tkawa15
-          git remote set-url origin git@github.com:tkawa15/sympal-dev.git
+          git config --global url."ssh://git@github.com".insteadOf "https://github.com"
           yarn set version stable
           yarn install
           yarn deploy
