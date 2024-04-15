@@ -16,5 +16,6 @@ jobs:
       - name: 静的ビルド
         run: |
           yarn set version stable
+          rm yarn.lock
           yarn install
-          yarn build-only
+          yarn deploy
