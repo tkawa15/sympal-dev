@@ -13,7 +13,10 @@ jobs:
     steps:
       - name: チェックアウト
         uses: actions/checkout@v4
-      - run: corepack enable
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '18.x'
+          cache: 'yarn'
       - name: 静的ビルド
         run: |
           yarn install
