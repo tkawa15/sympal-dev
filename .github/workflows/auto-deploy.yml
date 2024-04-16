@@ -23,5 +23,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          user_name: tkawa15
-          user_email: ttttt.fms5@gmail.com
