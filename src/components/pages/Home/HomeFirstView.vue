@@ -1,34 +1,34 @@
 <script setup lang="ts">
 import imgTopicIntern from '@/assets/images/topic-intern.png';
-import 'vue3-carousel/dist/carousel.css';
-import { Carousel, Slide, Pagination } from 'vue3-carousel';
+import imgTopDummy from '@/assets/images/top-dummy.jpg';
+import HomeCarouselBanner from '@/components/pages/Home//HomeCarouselBanner.vue';
 
 const TOPICS = [
   {
     title: 'インターン募集中',
-    img: imgTopicIntern,
+    image: imgTopicIntern,
     to: '/about',
   },
   {
     title: 'インターン募集中',
-    img: imgTopicIntern,
+    image: imgTopicIntern,
     to: '/service',
   },
   {
     title: 'インターン募集中',
-    img: imgTopicIntern,
+    image: imgTopicIntern,
     to: '/news',
   },
   {
     title: 'インターン募集中',
-    img: imgTopicIntern,
+    image: imgTopicIntern,
     to: 'https://sympal.co.jp/contact/',
   },
 ];
 </script>
 
 <template>
-  <div class="h-dvh w-full bg-top bg-cover">
+  <div class="h-dvh w-full bg-cover" :style="`background-image: url(${imgTopDummy})`">
     <div class="section-wrapper relative h-full">
       <!-- トップメッセージ -->
       <div class="absolute top-[40%] rounded-2xl text-white">
@@ -38,25 +38,9 @@ const TOPICS = [
         <p>Sympal株式会社は、ペットフードの開発を通じてペットの健康的な生活を実現します</p>
       </div>
       <!-- トピックカルーセル -->
-      <div class="absolute right-5 top-[60%] w-[800px]">
-        <Carousel :autoplay="5000" :wrap-around="true">
-          <Slide v-for="slide in TOPICS" :key="slide">
-            <div class="carousel__item">
-              <img :src="slide.img" />
-              <p>{{ slide.title }}</p>
-            </div>
-          </Slide>
-          <template #addons>
-            <Pagination class="carousel__pagination" />
-          </template>
-        </Carousel>
+      <div class="absolute bottom-[10%] right-5 w-[800px]">
+        <HomeCarouselBanner :items="TOPICS" />
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.carousel__pagination {
-  @apply rounded-full bg-red;
-}
-</style>

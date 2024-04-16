@@ -7,7 +7,6 @@ type Props = {
   tag?: string;
   openNewTab?: boolean;
 };
-
 const { to, color, tag, openNewTab } = withDefaults(defineProps<Props>(), {
   tag: '',
   color: 'red',
