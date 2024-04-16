@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
-    "deploy": "NODE_ENV=production yarn build && gh-pages -d dist",
+    "deploy": "yarn build && gh-pages -d dist",
     "preview": "vite preview",
-    "build-only": "vite build",
+    "build-only": "NODE_ENV=production vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint": "eslint --cache --fix",
     "format": "prettier --write src/",
