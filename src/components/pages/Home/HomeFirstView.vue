@@ -40,16 +40,15 @@ const TOPICS = [
       <!-- トピックカルーセル -->
       <div class="absolute right-5 top-[60%] w-[800px]">
         <Carousel :autoplay="5000" :wrap-around="true">
+          <template #addons>
+            <Pagination />
+          </template>
           <Slide v-for="slide in TOPICS" :key="slide">
             <div class="carousel__item">
               <img :src="slide.img" />
               <p>{{ slide.title }}</p>
             </div>
           </Slide>
-
-          <template #addons>
-            <Pagination />
-          </template>
         </Carousel>
       </div>
     </div>
