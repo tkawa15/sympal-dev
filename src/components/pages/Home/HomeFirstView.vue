@@ -35,7 +35,7 @@ const TOPICS = [
         <p class="text-4xl font-bold">
           ペットの健康寿命を<span class="text-red">10年</span>延ばします
         </p>
-        <p>Sympal株式会社は、ペットフードの開発を通じてペットの健康的な生活を実現します。</p>
+        <p>Sympal株式会社は、ペットフードの開発を通じてペットの健康的な生活を実現します</p>
       </div>
       <!-- トピックカルーセル -->
       <div class="absolute right-5 top-[60%] w-[800px]">
