@@ -10,17 +10,17 @@ const TOPICS = [
     to: '/about',
   },
   {
-    title: 'インターン募集中',
+    title: 'バナー2',
     img: imgTopicIntern,
     to: '/service',
   },
   {
-    title: 'インターン募集中',
+    title: 'バナー3',
     img: imgTopicIntern,
     to: '/news',
   },
   {
-    title: 'インターン募集中',
+    title: 'バナー4',
     img: imgTopicIntern,
     to: 'https://sympal.co.jp/contact/',
   },
