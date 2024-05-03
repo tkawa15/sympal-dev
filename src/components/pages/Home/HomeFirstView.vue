@@ -2,6 +2,7 @@
 import imgTopicIntern from '@/assets/images/topic-intern.png';
 import imgTopDummy from '@/assets/images/top-dummy.jpg';
 import HomeCarouselBanner from '@/components/pages/Home//HomeCarouselBanner.vue';
+import imgSympalLogoRed from '@/assets/logos/sympal-logo-red.png';
 
 const TOPICS = [
   {
@@ -28,18 +29,24 @@ const TOPICS = [
 </script>
 
 <template>
-  <div class="h-dvh w-full bg-cover" :style="`background-image: url(${imgTopDummy})`">
-    <div class="section-wrapper relative h-full">
+  <div class="h-lvh w-full bg-cover" :style="`background-image: url(${imgTopDummy})`">
+    <div class="section-wrapper relative flex h-full flex-col justify-evenly pt-32">
       <!-- トップメッセージ -->
-      <div class="absolute top-[40%] rounded-2xl text-white">
+      <div class="rounded-2xl text-white">
         <p class="text-4xl font-bold">
           ペットの健康寿命を<span class="text-red">10年</span>延ばします
         </p>
-        <p>Sympal株式会社は、ペットフードの開発を通じてペットの健康的な生活を実現します</p>
+        <p>わたしたちは、ペットフードの開発を通じてペットの健康的な生活を実現します</p>
       </div>
-      <!-- トピックカルーセル -->
-      <div class="absolute bottom-[10%] right-5 w-[800px]">
-        <HomeCarouselBanner :items="TOPICS" />
+      <div class="flex w-full items-end justify-between">
+        <div class="relative w-72">
+          <img :src="imgSympalLogoRed" class="absolute bottom-0 w-full" />
+          <h1 class="w-full text-center text-4xl font-bold text-red">Sympal株式会社</h1>
+        </div>
+        <!-- トピックカルーセル -->
+        <div class="w-[800px]">
+          <HomeCarouselBanner :items="TOPICS" />
+        </div>
       </div>
     </div>
   </div>

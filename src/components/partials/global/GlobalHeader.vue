@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import CommonLink from '@/components/partials/common/CommonLink.vue';
-import imgSympalFullWhite from '@/assets/images/sympal-full-white.png';
+import imgSympalFullWhite from '@/assets/logos/sympal-full-white.png';
 
 const HEADER_MENUS = [
   {
@@ -38,7 +38,9 @@ onMounted(() => {});
 <template>
   <div>
     <!-- ヘッダー（PC） -->
-    <nav class="hidden h-20 items-center justify-between rounded-[80px] bg-red pl-8 pr-10 md:flex">
+    <nav
+      class="hidden h-20 items-center justify-between rounded-[80px] bg-red pl-8 pr-10 shadow-lg md:flex"
+    >
       <div class="mr-5 shrink-0">
         <CommonLink to="/" color="transparent">
           <img :src="imgSympalFullWhite" class="h-12 w-40" />
@@ -71,16 +73,10 @@ onMounted(() => {});
 </template>
 
 <style scoped>
-.header {
-  @apply absolute inset-x-0 h-full pl-4 pr-5;
-  @apply hidden items-center justify-between md:flex;
-  @apply bg-white shadow-md;
-}
-
 .side-menu {
   @apply absolute -right-60 h-screen w-60 p-5;
   @apply bg-red;
-  @apply flex flex-col gap-y-5 shadow-md;
+  @apply flex flex-col gap-y-5 shadow-lg;
   @apply transition-all;
 }
 .side-menu.open {
