@@ -14,13 +14,14 @@ const { items } = withDefaults(defineProps<Props>(), {});
 </script>
 
 <template>
-  <Carousel :autoplay="5000" :wrap-around="true" snap-align="center">
+  <Carousel :autoplay="5000" :wrap-around="true">
     <Slide v-for="item in items" :key="item.title">
-      <CommonLink :to="item.to" color="transparent">
+      <CommonLink :to="item.to" color="transparent" class="carousel__pagination-item">
         <img :src="item.image" />
       </CommonLink>
     </Slide>
     <template #addons>
+      <Navigation />
       <div class="carousel__pagination-wrapper">
         <Pagination />
         <p>Topics</p>
@@ -33,6 +34,10 @@ const { items } = withDefaults(defineProps<Props>(), {});
 .carousel {
   @apply p-0 shadow-lg;
   @apply rounded-b-lg rounded-l-lg border-8 border-red;
+}
+
+.carousel__pagination-item {
+  @apply transition-opacity duration-300 hover:opacity-80;
 }
 
 .carousel__pagination-wrapper {

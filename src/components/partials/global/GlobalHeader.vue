@@ -62,7 +62,7 @@ onMounted(() => {});
       ></div>
       <div>
         <CommonLink to="/" color="transparent">
-          <img src="@/assets/images/sympal-text-white.png" class="h-12" />
+          <img :src="imgSympalFullWhite" class="h-12" />
         </CommonLink>
       </div>
       <template v-for="(menu, index) in HEADER_MENUS" :key="`header-menu-${index}`">
