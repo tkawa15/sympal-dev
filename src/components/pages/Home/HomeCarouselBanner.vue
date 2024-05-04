@@ -43,7 +43,7 @@ const { items } = withDefaults(defineProps<Props>(), {});
 .carousel__pagination-wrapper {
   @apply rounded-t-lg px-5 py-2.5;
   @apply flex items-center gap-x-5;
-  @apply absolute -right-[7.5px] -top-12;
+  @apply absolute -right-2 -top-12;
   @apply bg-red font-medium text-white;
 }
 

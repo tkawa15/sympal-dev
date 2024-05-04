@@ -3,10 +3,15 @@ import { ref } from 'vue';
 import { RouterView } from 'vue-router';
 import GlobalHeader from '@/components/partials/global/GlobalHeader.vue';
 import GlobalFooter from '@/components/partials//global/GlobalFooter.vue';
+import { useResponsive } from '@/composables/useResponsive';
+
+const { getIsMobile } = useResponsive();
 
 const showFullHeader = ref<boolean>(false);
 
 const setShowFullHeader = (event: boolean) => {
+  const isMobile = getIsMobile();
+  if (isMobile) return;
   showFullHeader.value = event;
 };
 </script>

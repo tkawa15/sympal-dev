@@ -2349,13 +2349,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ismobilejs@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "ismobilejs@npm:1.1.1"
-  checksum: 10c0/3f15f3bd8fe2290bc2f7398c95ceee7525db7d8cf76b8def201c19c49b3a37be33d9ecedc4e316aadcc67a70859ae491981e07cf998db1ec3e5ad0df905bc16a
-  languageName: node
-  linkType: hard
-
 "jackspeak@npm:^2.3.6":
   version: 2.3.6
   resolution: "jackspeak@npm:2.3.6"
@@ -3770,7 +3763,6 @@ __metadata:
     eslint: "npm:^8.49.0"
     eslint-plugin-vue: "npm:^9.17.0"
     husky: "npm:^9.0.11"
-    ismobilejs: "npm:^1.1.1"
     lint-staged: "npm:^15.2.2"
     npm-run-all2: "npm:^6.1.1"
     postcss: "npm:^8.4.31"
@@ -3783,6 +3775,7 @@ __metadata:
     vue-router: "npm:^4.2.5"
     vue-tsc: "npm:^1.8.19"
     vue3-carousel: "npm:^0.3.3"
+    vue3-mq: "npm:^3.2.0"
   languageName: unknown
   linkType: soft
 
@@ -4135,6 +4128,15 @@ __metadata:
   peerDependencies:
     vue: ^3.2.0
   checksum: 10c0/fdc1e5da75713d49ea47abe990a64c69a87e7a69ed219e00fa2d208de724bfc77e250ebb77731ea3f51ca073abf2f5d399d9539be4b647dc1fb395886499347e
+  languageName: node
+  linkType: hard
+
+"vue3-mq@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "vue3-mq@npm:3.2.0"
+  peerDependencies:
+    vue: ^3.0.5
+  checksum: 10c0/ab88b8f17c2aa3075acfae9eb1e8f259b599a8ff3a77a9f48e60432580d0f2db627aed1d2f03651dfc9b60a6bab59334d904847d09b954575d11e1578988d211
   languageName: node
   linkType: hard
 

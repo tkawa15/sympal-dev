@@ -3,6 +3,7 @@ import imgTopicIntern from '@/assets/images/topic-intern.png';
 import imgTopDummy from '@/assets/images/top-dummy.jpg';
 import HomeCarouselBanner from '@/components/pages/Home//HomeCarouselBanner.vue';
 import imgSympalLogoRed from '@/assets/logos/sympal-logo-red.png';
+import imgSympalFullRed from '@/assets/logos/sympal-full-red.png';
 
 const TOPICS = [
   {
@@ -29,8 +30,11 @@ const TOPICS = [
 </script>
 
 <template>
-  <div class="w-full bg-cover" :style="`background-image: url(${imgTopDummy})`">
-    <div class="section-wrapper relative flex h-full flex-col justify-evenly pt-32">
+  <div class="w-full bg-cover bg-center" :style="`background-image: url(${imgTopDummy})`">
+    <div class="section-wrapper relative flex h-full flex-col justify-between pb-20 pt-6">
+      <div class="h-20">
+        <img :src="imgSympalFullRed" class="w-60 md:hidden" />
+      </div>
       <div class="rounded-2xl text-white">
         <!-- トップメッセージ -->
         <p class="text-4xl font-bold">
@@ -40,7 +44,7 @@ const TOPICS = [
       </div>
       <div class="flex w-full items-end justify-between">
         <!-- ロゴ -->
-        <div class="relative w-72">
+        <div class="relative hidden w-72 md:block">
           <img :src="imgSympalLogoRed" class="absolute bottom-0 w-full" />
           <h1 class="w-full text-center text-4xl font-bold text-red">Sympal株式会社</h1>
         </div>
