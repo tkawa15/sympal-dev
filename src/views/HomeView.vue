@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineEmits, onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import HomeFirstView from '@/components/pages/Home/HomeFirstView.vue';
 
 const emits = defineEmits<{ (e: 'intersect', value: boolean): void }>();

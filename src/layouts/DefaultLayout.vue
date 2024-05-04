@@ -13,7 +13,7 @@ const setShowFullHeader = (event: boolean) => {
 
 <template>
   <div class="rerative flex min-h-screen flex-col">
-    <header class="fixed z-50 w-full">
+    <header class="fixed z-header w-full">
       <div class="section-wrapper py-5">
         <GlobalHeader :showFullHeader="showFullHeader" />
       </div>
@@ -24,6 +24,6 @@ const setShowFullHeader = (event: boolean) => {
     <footer class="">
       <GlobalFooter />
     </footer>
-    <div id="side-menu-portal" class="fixed inset-0" />
+    <div id="side-menu-portal" class="pointer-events-none fixed z-portal h-full w-full" />
   </div>
 </template>

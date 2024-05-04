@@ -4,6 +4,7 @@ import CommonLink from '@/components/partials/common/CommonLink.vue';
 import imgSympalFullWhite from '@/assets/logos/sympal-full-white.png';
 import imgSympalLogoWhite from '@/assets/logos/sympal-logo-white.png';
 import iconMenuOpen from '@/assets/icons/menu-open.svg';
+import iconClose from '@/assets/icons/close.svg';
 
 type Props = {
   showFullHeader: boolean;
@@ -12,6 +13,8 @@ const props = withDefaults(defineProps<Props>(), { showFullHeader: false });
 
 const { showFullHeader } = toRefs(props);
 const isMounted = ref<boolean>(false);
+const showSideMenu = ref<boolean>(false);
+const bodyRef = ref<HTMLBodyElement | null>(null);
 
 const HEADER_MENUS = [
   {
@@ -33,111 +36,108 @@ const HEADER_MENUS = [
 ];
 
 const toggleSideMenu = () => {
-  const body = document.querySelector('body');
-  const menuToggleButton = document.querySelector('#menu-toggle-button');
-  const sideMenu = document.querySelector('#side-menu');
-  if (!body || !menuToggleButton || !sideMenu) return;
-  body.classList.toggle('no-scroll');
-  menuToggleButton.classList.toggle('open');
-  sideMenu.classList.toggle('open');
+  if (!bodyRef.value) return;
+  if (showSideMenu.value) {
+    bodyRef.value.classList.remove('no-scroll');
+    showSideMenu.value = false;
+  } else {
+    bodyRef.value.classList.add('no-scroll');
+    showSideMenu.value = true;
+  }
 };
 
 onMounted(() => {
   isMounted.value = true;
+  bodyRef.value = document.querySelector('body');
 });
 </script>
 
 <template>
   <div class="relative">
-    <!-- ヘッダー（PC） -->
-    <nav class="header" :class="[showFullHeader ? 'w-full pl-8 pr-10' : 'w-20 p-0']">
-      <div
-        class="absolute flex w-full justify-center hover:cursor-pointer"
-        :class="[showFullHeader ? 'transition-invisibility' : 'transition-visibility']"
-      >
-        <img :src="imgSympalLogoWhite" class="h-12 w-12" />
-        <img :src="iconMenuOpen" class="absolute left-7 top-3" />
-      </div>
-      <div
-        class="mr-5 shrink-0"
-        :class="[showFullHeader ? 'transition-visibility' : 'transition-invisibility']"
-      >
-        <CommonLink to="/" color="transparent">
-          <img :src="imgSympalFullWhite" class="h-12 w-40" />
-        </CommonLink>
-      </div>
-      <div
-        class="flex gap-x-5"
-        :class="[showFullHeader ? 'transition-visibility' : 'transition-invisibility']"
-      >
-        <template v-for="(menu, index) in HEADER_MENUS" :key="`header-menu-${index}`">
-          <CommonLink :to="menu.to" color="white">{{ menu.text }}</CommonLink>
-        </template>
-      </div>
+    <!-- ヘッダー -->
+    <nav
+      class="transition-padding absolute right-0 h-20 rounded-[80px] bg-red shadow-lg transition-header duration-300"
+      :class="[showFullHeader ? 'w-full pl-8 pr-10' : 'w-20 p-0']"
+    >
+      <Transition name="fade">
+        <div
+          v-if="!showFullHeader"
+          class="absolute flex h-full w-full items-center justify-center hover:cursor-pointer"
+          @click="toggleSideMenu"
+        >
+          <img :src="imgSympalLogoWhite" class="h-12 w-12" />
+          <img :src="iconMenuOpen" class="absolute left-7 top-7" />
+        </div>
+      </Transition>
+
+      <Transition name="fade">
+        <div v-if="showFullHeader" class="flex h-full items-center justify-between">
+          <div class="mr-5 shrink-0">
+            <CommonLink to="/" color="transparent">
+              <img :src="imgSympalFullWhite" class="h-12 w-40" />
+            </CommonLink>
+          </div>
+          <div class="flex gap-x-5">
+            <template v-for="(menu, index) in HEADER_MENUS" :key="`header-menu-${index}`">
+              <CommonLink :to="menu.to" color="white">{{ menu.text }}</CommonLink>
+            </template>
+          </div>
+        </div>
+      </Transition>
     </nav>
-    <!-- ヘッダー（SP） -->
 
     <!-- サイドメニュー -->
-    <Teleport v-if="isMounted" to="#side-menu-portal">
-      <nav id="side-menu" class="side-menu">
+    <Teleport v-if="isMounted" to="#side-menu-portal" class="relative">
+      <!-- メイン -->
+      <Transition name="slide">
+        <nav
+          v-if="showSideMenu"
+          class="pointer-events-auto absolute inset-y-0 right-0 flex w-60 flex-col justify-between bg-red p-5 shadow-lg"
+        >
+          <div class="flex flex-col gap-y-5">
+            <div class="flex justify-end">
+              <img :src="iconClose" class="h-6 w-6 hover:cursor-pointer" @click="toggleSideMenu" />
+            </div>
+            <div class="flex justify-center">
+              <CommonLink to="/" color="transparent">
+                <img :src="imgSympalFullWhite" class="h-12" />
+              </CommonLink>
+            </div>
+            <template v-for="(menu, index) in HEADER_MENUS" :key="`header-menu-${index}`">
+              <CommonLink :to="menu.to" color="white">{{ menu.text }}</CommonLink>
+            </template>
+          </div>
+          <p class="text-center text-white">&copy; Sympal Inc.</p>
+        </nav>
+      </Transition>
+      <!-- 背景 -->
+      <Transition name="fade">
         <div
-          class="bg-wrapper hodden inset-0 -z-10 bg-black opacity-0"
-          :onClick="toggleSideMenu"
-        ></div>
-        <div>
-          <CommonLink to="/" color="transparent">
-            <img :src="imgSympalFullWhite" class="h-12" />
-          </CommonLink>
-        </div>
-        <template v-for="(menu, index) in HEADER_MENUS" :key="`header-menu-${index}`">
-          <CommonLink :to="menu.to" color="white">{{ menu.text }}</CommonLink>
-        </template>
-      </nav>
+          v-if="showSideMenu"
+          class="pointer-events-auto absolute inset-0 z-background bg-black opacity-50"
+          @click="toggleSideMenu"
+        />
+      </Transition>
     </Teleport>
   </div>
 </template>
 
 <style scoped>
-.header {
-  @apply absolute right-0 h-20;
-  @apply flex items-center justify-between;
-  @apply rounded-[80px] bg-red shadow-lg;
-  @apply transition-all duration-300;
+.slide-enter-active,
+.slide-leave-active {
+  @apply transition-transform duration-300;
+}
+.slide-enter-from,
+.slide-leave-to {
+  @apply translate-x-60;
 }
 
-.transition-visibility {
-  animation: visible 0.3s forwards;
+.fade-enter-active,
+.fade-leave-active {
+  @apply transition-opacity duration-300;
 }
-.transition-invisibility {
-  animation: invisible 0.3s forwards;
-}
-@keyframes visible {
-  0% {
-    @apply block opacity-0;
-  }
-  100% {
-    @apply opacity-100;
-  }
-}
-@keyframes invisible {
-  0% {
-    @apply opacity-100;
-  }
-  100% {
-    @apply hidden opacity-0;
-  }
-}
-
-.side-menu {
-  @apply absolute -right-60 h-screen w-60 p-5;
-  @apply bg-red;
-  @apply flex flex-col gap-y-5 shadow-lg;
-  @apply transition-all;
-}
-.side-menu.open {
-  @apply right-0;
-}
-.side-menu.open > .bg-wrapper {
-  @apply fixed opacity-50;
+.fade-enter-from,
+.fade-leave-to {
+  @apply opacity-0;
 }
 </style>
