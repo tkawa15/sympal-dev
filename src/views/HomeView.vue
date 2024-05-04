@@ -36,6 +36,7 @@ onUnmounted(() => {
       <HomeFirstView class="h-lvh" />
     </div>
 
+    <!-- About -->
     <HomeSection title="About" more-link="/about">
       <div>
         <h3 class="opacity-70">
@@ -59,6 +60,11 @@ onUnmounted(() => {
           </video>
         </div>
       </div>
+    </HomeSection>
+
+    <!-- Service -->
+    <HomeSection title="Service" more-link="/service">
+      <div></div>
     </HomeSection>
   </div>
 </template>

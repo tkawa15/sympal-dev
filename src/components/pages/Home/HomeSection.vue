@@ -13,10 +13,10 @@ const { title } = withDefaults(defineProps<Props>(), {
 
 <template>
   <section>
-    <div class="section-wrapper flex justify-between">
-      <div class="grow">
+    <div class="section-wrapper flex justify-between gap-x-5">
+      <div class="flex grow flex-col justify-between">
         <slot />
-        <div class="mt-20 inline-block rounded-full bg-red px-8 py-4">
+        <div class="mt-10 w-full rounded-full bg-red py-4 text-center md:mt-20 md:w-60">
           <CommonLink v-if="moreLink" :to="moreLink" color="white">{{ moreText }}</CommonLink>
         </div>
       </div>
