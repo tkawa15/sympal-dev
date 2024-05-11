@@ -54,7 +54,7 @@ onUnmounted(() => {
             muted
             loop
             playsinline
-            class="h-[335px] md:h-[440px] w-[235px] md:w-[540px] object-cover object-center"
+            class="h-[335px] md:h-[440px] max-w-full w-[540px] object-cover object-center"
           >
             <source :src="movSympalAnimation" type="video/mp4" />
           </video>

@@ -13,9 +13,9 @@ const { title } = withDefaults(defineProps<Props>(), {
 
 <template>
   <section>
-    <div class="section-wrapper flex justify-between gap-x-5">
-      <div class="flex grow flex-col justify-between max-w-full">
-        <slot />
+    <div class="section-wrapper grid  grid-cols-[1fr_80px] gap-x-5">
+      <div class="flex grow flex-col justify-between">
+        <slot class="shrink" />
         <div class="mt-10 w-full rounded-full bg-red py-4 text-center md:mt-20 md:w-60">
           <CommonLink v-if="moreLink" :to="moreLink" color="white">{{ moreText }}</CommonLink>
         </div>
