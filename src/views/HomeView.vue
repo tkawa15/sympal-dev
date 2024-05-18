@@ -3,6 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import HomeFirstView from '@/components/pages/Home/HomeFirstView.vue';
 import HomeSection from '@/components/pages/Home/HomeSection.vue';
 import movSympalAnimation from '@/assets/logos/sympal-animation.mp4';
+import imgServiceMedifresh from '@/assets/images/service-medifresh.jpg';
 
 const emits = defineEmits<{ (e: 'intersect', value: boolean): void }>();
 
@@ -64,7 +65,9 @@ onUnmounted(() => {
 
     <!-- Service -->
     <HomeSection title="Service" more-link="/service">
-      <div></div>
+      <div>
+        <img :src="imgServiceMedifresh" />
+      </div>
     </HomeSection>
   </div>
 </template>
