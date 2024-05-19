@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import 'vue3-carousel/dist/carousel.css';
-import { Carousel, Slide, Pagination } from 'vue3-carousel';
+import { Carousel, Slide } from 'vue3-carousel';
 import CommonLink from '@/components/partials/common/CommonLink.vue';
 import imgServiceMedifresh from '@/assets/images/service-medifresh.jpg';
 import imgServiceFood from '@/assets/images/service-food.jpeg';

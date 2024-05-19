@@ -57,6 +57,29 @@ const NEWS = [
     isNew: false,
   },
 ]
+
+const COMPANY_INFO = [
+  {
+    head: "会社名",
+    body: "Sympal株式会社(Sympal Inc)",
+  },
+  {
+    head: "創業",
+    body: "2023年6月",
+  },
+  {
+    head: "代表取締役",
+    body: "合田圭佑",
+  },
+  {
+    head: "事業内容",
+    body: "食品およびペットフードの開発・販売",
+  },
+  {
+    head: "取引銀行",
+    body: "きらぼし銀行、興産信用金庫",
+  },
+];
 </script>
 
 <template>
@@ -98,9 +121,9 @@ const NEWS = [
 
     <!-- News -->
     <HomeSection title="News" more-link="/service" moreText="ニュース一覧を見る→">
-      <div class="flex flex-col gap-y-10 md:gap-y-20">
-        <div v-for="item in NEWS" :key="item.title">
-          <CommonLink :to="item.to" color="transparent" class="transition-opacity hover:opacity-50">
+      <div class="flex flex-col gap-y-10">
+        <div v-for="item in NEWS" :key="item.title" class="p-5 shadow rounded transition-shadow hover:shadow-lg">
+          <CommonLink :to="item.to" color="transparent">
             <div class="flex gap-x-5">
               <img :src="item.image" class="w-20 h-20 md:w-40 md:h-40 object-cover" />
               <div class="flex flex-col gap-y-2.5 md:gap-y-5">
@@ -115,6 +138,27 @@ const NEWS = [
               </div>
             </div>
           </CommonLink>
+        </div>
+      </div>
+    </HomeSection>
+
+    <!-- Company -->
+    <HomeSection title="Company">
+      <div class="flex flex-col gap-y-10">
+        <table class="w-full">
+          <tbody>
+            <tr v-for="item in COMPANY_INFO" class="border-b border-black-1 last:border-none">
+              <th class="text-left py-2.5 pr-5 w-32 md:w-40 opacity-70">{{ item.head }}</th>
+              <td class="py-2.5 opacity-70">{{ item.body }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="md:grid grid-cols-[320px_1fr]">
+          <div class="flex flex-col gap-y-5 mb-5">
+            <h4 class="opacity-70 text-xl">オフィス</h4>
+            <p class="opacity-50">〒101-0064<br/>東京都千代田区神田猿楽町2-8-11<br/>VORT水道橋Ⅲ 9階</p>
+          </div>
+          <iframe class="w-full" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3240.0262760319642!2d139.757484!3d35.700971!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d80bff12285%3A0x7e5f2baa6f2c635b!2zU3ltcGFs44ix!5e0!3m2!1sja!2sjp!4v1716114835579!5m2!1sja!2sjp" width="400" height="300" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </HomeSection>
