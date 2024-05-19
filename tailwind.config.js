@@ -8,7 +8,11 @@ module.exports = {
         DEFAULT: '#333333',
         5: 'rgba(51, 51, 51, 0.5)',
       },
-      white: '#FFFFFF',
+      white: {
+        DEFAULT: '#FFFFFF',
+        9: 'rgba(255, 255, 255, 0.9)',
+        5: 'rgba(255, 255, 255, 0.5)',
+      },
       red: '#E60033',
       green: '#eeffee',
     },
