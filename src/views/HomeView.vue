@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
+import CommonLink from '@/components/partials/common/CommonLink.vue';
 import HomeFirstView from '@/components/pages/Home/HomeFirstView.vue';
 import HomeServiceContents from '@/components/pages/Home/HomeServiceContents.vue';
 import HomeSection from '@/components/pages/Home/HomeSection.vue';
@@ -29,6 +30,33 @@ onUnmounted(() => {
     headerObserver.value.disconnect();
   }
 });
+
+const NEWS = [
+  {
+    title: "栃木銀行主催の「第8回とちぎんビジネスプランコンテスト」で特別賞を受賞",
+    to: "https://sympal.co.jp/press5/",
+    description: "栃木銀行が主催する「第8回とちぎんビジネスプランコンテスト 最終選考会」にて特別賞(とちぎんリーシング賞)を受賞しました。栃木銀行によるプレスリリースはこちら",
+    date: "2024年2月21日",
+    image: "https://sympal.co.jp/wp-content/uploads/2024/04/IMG_0677-768x576.jpg",
+    isNew: true,
+  },
+  {
+    title: "栃木銀行主催の「第8回とちぎんビジネスプランコンテスト」で特別賞を受賞",
+    to: "https://sympal.co.jp/press5/",
+    description: "栃木銀行が主催する「第8回とちぎんビジネスプランコンテスト栃木銀行が主催する「第8回とちぎんビジネスプランコンテスト 最終選考会」にて特別賞(とちぎんリーシング賞)を受賞しました。栃木銀行が主催する「第8回とちぎんビジネスプランコンテスト 最終選考会」にて特別賞(とちぎんリーシング賞)を受賞しました。栃木銀行が主催する「第8回とちぎんビジネスプランコンテスト 最終選考会」にて特別賞(とちぎんリーシング賞)を受賞しました。栃木銀行によるプレスリリースはこちら",
+    date: "2024年2月21日",
+    image: "https://sympal.co.jp/wp-content/uploads/2024/04/IMG_0677-768x576.jpg",
+    isNew: false,
+  },
+  {
+    title: "栃木銀行主催の「第8回とちぎんビジネスプランコンテスト」で特別賞を受賞",
+    to: "https://sympal.co.jp/press5/",
+    description: "栃木銀行が主催する「第8回とちぎんビジネスプランコンテスト 最終選考会」にて特別賞(とちぎんリーシング賞)を受賞しました。栃木銀行によるプレスリリースはこちら",
+    date: "2024年2月21日",
+    image: "https://sympal.co.jp/wp-content/uploads/2024/04/IMG_0677-768x576.jpg",
+    isNew: false,
+  },
+]
 </script>
 
 <template>
@@ -66,6 +94,29 @@ onUnmounted(() => {
     <!-- Service -->
     <HomeSection title="Service" more-link="/service">
       <HomeServiceContents />
+    </HomeSection>
+
+    <!-- News -->
+    <HomeSection title="News" more-link="/service" moreText="ニュース一覧を見る→">
+      <div class="flex flex-col gap-y-10 md:gap-y-20">
+        <div v-for="item in NEWS" :key="item.title">
+          <CommonLink :to="item.to" color="transparent" class="transition-opacity hover:opacity-50">
+            <div class="flex gap-x-5">
+              <img :src="item.image" class="w-20 h-20 md:w-40 md:h-40 object-cover" />
+              <div class="flex flex-col gap-y-2.5 md:gap-y-5">
+                <div class="flex flex-col md:flex-row gap-2.5 items-baseline">
+                  <h4 class="opacity-70">{{ item.title }}</h4>
+                  <p class="text-xs">
+                    <span class="opacity-50">{{ item.date }}</span>
+                    <span v-if="item.isNew" class="text-red ml-2.5">New!</span>
+                  </p>
+                </div>
+                <p class="opacity-50 line-clamp-2 md:line-clamp-3">{{ item.description }}</p>
+              </div>
+            </div>
+          </CommonLink>
+        </div>
+      </div>
     </HomeSection>
   </div>
 </template>
