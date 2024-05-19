@@ -85,7 +85,7 @@ h3 {
 }
 
 .carousel.home-service {
-  @apply p-0 -mx-5;
+  @apply p-0 -ml-5;
 }
 
 .carousel.home-service .carousel__pagination-item img {

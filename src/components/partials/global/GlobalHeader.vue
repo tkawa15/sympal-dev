@@ -30,6 +30,10 @@ const HEADER_MENUS = [
     to: '/news',
   },
   {
+    text: 'Company',
+    to: '#Company',
+  },
+  {
     text: 'Contact',
     to: 'https://sympal.co.jp/contact/',
   },
