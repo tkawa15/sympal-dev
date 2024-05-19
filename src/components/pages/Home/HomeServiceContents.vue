@@ -1,8 +1,34 @@
 <script setup lang="ts">
+import 'vue3-carousel/dist/carousel.css';
+import { Carousel, Slide, Pagination } from 'vue3-carousel';
+import CommonLink from '@/components/partials/common/CommonLink.vue';
 import imgServiceMedifresh from '@/assets/images/service-medifresh.jpg';
 import imgServiceFood from '@/assets/images/service-food.jpeg';
 import imgServiceDish from '@/assets/images/service-dish.jpeg';
 import imgServiceStartup from '@/assets/images/service-startup.jpeg';
+
+const SERVICES = [
+  {
+    title: "機能性フレッシュドッグフード「MEDIFRESH」",
+    to: "/service#medifresh",
+    image: imgServiceFood,
+  },
+  {
+    title: "ペットフードの開発",
+    to: "/service#food",
+    image: imgServiceDish,
+  },
+  {
+    title: "食品の開発",
+    to: "/service#dish",
+    image: imgServiceMedifresh,
+  },
+  {
+    title: "スタートアップ支援",
+    to: "/service#startup",
+    image: imgServiceStartup,
+  },
+];
 </script>
 
 <template>
@@ -41,6 +67,14 @@ import imgServiceStartup from '@/assets/images/service-startup.jpeg';
 
     <!-- SP -->
     <div class="md:hidden">
+      <Carousel class="home-service" :items-to-show="1.15" :autoplay="5000" :wrap-around="true">
+        <Slide v-for="item in SERVICES" :key="item.title">
+          <CommonLink :to="item.to" color="transparent" class="carousel__pagination-item">
+            <img :src="item.image" />
+            <p class="carousel__pagination-item-title">{{ item.title }}</p>
+          </CommonLink>
+        </Slide>
+      </Carousel>
     </div>
   </div>
 </template>
@@ -48,5 +82,21 @@ import imgServiceStartup from '@/assets/images/service-startup.jpeg';
 <style scoped>
 h3 {
   @apply text-3xl font-light;
+}
+
+.carousel.home-service {
+  @apply p-0 -mx-5;
+}
+
+.carousel.home-service .carousel__pagination-item img {
+  @apply h-60 w-full object-cover;
+}
+
+.carousel.home-service .carousel__pagination-item {
+  @apply relative;
+}
+
+.carousel.home-service .carousel__pagination-item-title {
+  @apply absolute bottom-0 inset-x-0 p-5 bg-white-5 text-xl;
 }
 </style>
