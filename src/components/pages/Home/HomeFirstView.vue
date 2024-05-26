@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { computed, nextTick, onMounted, ref } from 'vue';
 import imgTopicIntern from '@/assets/images/topic-intern.png';
-import imgTopDummy from '@/assets/images/top-dummy.jpg';
-import HomeCarouselBanner from '@/components/pages/Home//HomeCarouselBanner.vue';
-import imgSympalLogoRed from '@/assets/logos/sympal-logo-red.png';
+import imgFirstiewBackgroundPc from '@/assets/images/firstview-background-pc.png';
+import imgFirstiewBackgroundSp from '@/assets/images/firstview-background-sp.png';
 import imgSympalFullRed from '@/assets/logos/sympal-full-red.png';
+import CommonLink from '@/components/partials/common/CommonLink.vue';
+import { useResponsive } from '@/composables/useResponsive';
+
+const { getIsMobile } = useResponsive();
 
 const TOPICS = [
   {
@@ -27,30 +31,31 @@ const TOPICS = [
     to: 'https://sympal.co.jp/contact/',
   },
 ];
+
+const showFirstView = ref<boolean>(false);
+const isMobile = computed(() => getIsMobile());
+
+onMounted(() => {
+  nextTick(() => { showFirstView.value = true; });
+});
 </script>
 
 <template>
-  <div class="w-full bg-cover bg-center" :style="`background-image: url(${imgTopDummy})`">
+  <div
+    class="w-full bg-cover bg-center transition-opacity duration-500 delay-500"
+    :class="[showFirstView ? 'opacity-100' : 'opacity-0']"
+    :style="`background-image: url(${isMobile ? imgFirstiewBackgroundSp : imgFirstiewBackgroundPc})`"
+  >
     <div class="section-wrapper relative flex h-full flex-col justify-between pb-20 pt-6">
       <div class="h-20">
         <img :src="imgSympalFullRed" class="w-60 md:hidden" />
       </div>
-      <div class="rounded-2xl text-white">
-        <!-- トップメッセージ -->
-        <p class="text-4xl font-bold">
-          ペットの健康寿命を<span class="text-red">10年</span>延ばします
+      <div class="flex flex-col gap-y-10">
+        <p class="text-6xl md:text-7xl font-bold transition-[translate, opacity] duration-500 delay-1000" :class="[showFirstView ? 'translate-x-0 opacity-80' : '-translate-x-8 opacity-0']">
+          ペットと人の<br class="md:hidden">健康寿命延伸
         </p>
-        <p>わたしたちは、ペットフードの開発を通じてペットの健康的な生活を実現します</p>
-      </div>
-      <div class="flex w-full items-end justify-between">
-        <!-- ロゴ -->
-        <div class="relative hidden w-72 md:block">
-          <img :src="imgSympalLogoRed" class="absolute bottom-0 w-full" />
-          <h1 class="w-full text-center text-4xl font-bold text-red">Sympal株式会社</h1>
-        </div>
-        <!-- トピックカルーセル -->
-        <div class="w-[800px]">
-          <HomeCarouselBanner :items="TOPICS" />
+        <div class="transition-opacity duration-500 delay-1500 bg-red w-60 text-center py-4 rounded-full" :class="[showFirstView ? 'opacity-100' : 'opacity-0']">
+          <CommonLink to="/contact" color="white">お問い合わせはこちら</CommonLink>
         </div>
       </div>
     </div>

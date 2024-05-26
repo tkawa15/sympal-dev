@@ -38,6 +38,9 @@ module.exports = {
       transitionProperty: {
         header: 'width, padding',
       },
+      transitionDelay: {
+        '1500': '1500ms',
+      },
     },
   },
   variants: {

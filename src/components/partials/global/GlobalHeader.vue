@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, toRefs } from 'vue';
+import { nextTick, onMounted, ref, toRefs } from 'vue';
 import CommonLink from '@/components/partials/common/CommonLink.vue';
 import imgSympalFullWhite from '@/assets/logos/sympal-full-white.png';
 import imgSympalLogoWhite from '@/assets/logos/sympal-logo-white.png';
@@ -51,13 +51,13 @@ const toggleSideMenu = () => {
 };
 
 onMounted(() => {
-  isMounted.value = true;
   bodyRef.value = document.querySelector('body');
+  nextTick(() => { isMounted.value = true; });
 });
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative transition-opacity duration-500 delay-500" :class="[isMounted ? 'opacity-100' : 'opacity-0']">
     <!-- ヘッダー -->
     <nav
       class="transition-padding absolute right-0 h-20 rounded-[80px] bg-red shadow-lg transition-header duration-300"
